@@ -3,10 +3,14 @@ pipeline {
 
     stages {
         stage("build jar file") {
-            sh "mvn package"
+            steps {
+                sh "mvn package"
+            }
         }
         stage("Run Unit Tests") {
-            sh "mvn test"
+            steps {
+                sh "mvn test"
+            }
         }
     }
     post {
