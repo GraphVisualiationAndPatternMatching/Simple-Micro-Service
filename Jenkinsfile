@@ -2,17 +2,20 @@ pipeline {
     agent any
 
     stages {
-        dir("service") {
-            stage("build jar file") {
-                steps {
+        stage("build jar file") {
+            steps {
+                dir("service") {
                     sh "ls"
                     sh "mvn package"
                 }
             }
-            stage("Run Unit Tests") {
-                steps {
+        }
+        stage("Run Unit Tests") {
+            steps {
+                dir("service") {
                     sh "mvn test"
                 }
+
             }
         }
     }
