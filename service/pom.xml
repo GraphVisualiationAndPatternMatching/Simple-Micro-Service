@@ -40,10 +40,10 @@
     <properties>
         <start-class>com.jadavey.graph.vizualization.pattern.matching.simple.service.Main</start-class>
         <java.version>1.10</java.version>
-        <Dsonar.host.url>https://sonarcloud.io/projects</Dsonar.host.url>
-        <Dsonar.organization>jb574-github</Dsonar.organization>
-        <Dsonar.login>8a875fd34f367672dff11f73ca90d75ea41dd84b</Dsonar.login>
-        <Dsonar.projectKey>Simple-Micro-Service</Dsonar.projectKey>
+        <sonar.host.url>https://sonarcloud.io/projects</sonar.host.url>
+        <sonar.organization>jb574-github</sonar.organization>
+        <sonar.login>8a875fd34f367672dff11f73ca90d75ea41dd84b</sonar.login>
+        <sonar.projectKey>Simple-Micro-Service</sonar.projectKey>
     </properties>
 
     <build>
