@@ -1,5 +1,6 @@
 package com.jadavey.graph.vizualization.pattern.matching.simple.service.Model;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
