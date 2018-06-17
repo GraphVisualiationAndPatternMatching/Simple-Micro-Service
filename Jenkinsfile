@@ -19,10 +19,8 @@ pipeline {
         }
         stage("Analyze Code using Sonar") {
             steps {
-                steps {
-                    dir("service") {
-                        sh "mvn  sonar:sonar -Dsonar.branch=" + env.BRANCH_NAME
-                    }
+                dir("service") {
+                    sh "mvn  sonar:sonar -Dsonar.branch=" + env.BRANCH_NAME
                 }
             }
         }
