@@ -8,7 +8,7 @@ public class HelloTest {
 
     @Test
     public void checkCorrectMessageIsProduced() {
-        Hello testObject =  new Hello();
+        Hello testObject = new Hello();
         assertThat(testObject.sayHello()).isEqualToIgnoringCase("Hello world!");
     }
 }

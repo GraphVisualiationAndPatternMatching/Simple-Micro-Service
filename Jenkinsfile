@@ -5,7 +5,6 @@ pipeline {
         stage("build jar file") {
             steps {
                 dir("service") {
-                    sh "ls"
                     sh "mvn package"
                 }
             }
@@ -13,9 +12,22 @@ pipeline {
         stage("Run Unit Tests") {
             steps {
                 dir("service") {
-                    sh "mvn test"
+                    sh "mvn test  org.jacoco:jacoco-maven-plugin:prepare-agent "
                 }
 
+            }
+        }
+        stage("Analyze Code using Sonar") {
+            steps {
+                dir("service") {
+                    script {
+                        if(env.BRANCH_NAME.equals("master")) {
+                            sh "mvn  sonar:sonar"
+                        } else {
+                            sh "mvn  sonar:sonar -Dsonar.branch.name=" + env.BRANCH_NAME
+                        }
+                    }
+                }
             }
         }
     }
