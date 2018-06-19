@@ -20,7 +20,13 @@ pipeline {
         stage("Analyze Code using Sonar") {
             steps {
                 dir("service") {
-                    sh "mvn  sonar:sonar"
+                    String branchName = env.BRANCH_NAME;
+                    if(branchName.equals("master")) {
+                        sh "mvn  sonar:sonar"
+                    } else {
+                        sh "mvn  sonar:sonar sonar.branch.name= " + branchName
+                    }
+
                 }
             }
         }
