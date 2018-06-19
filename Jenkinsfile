@@ -24,7 +24,7 @@ pipeline {
                         if(env.BRANCH_NAME.equals("master")) {
                             sh "mvn  sonar:sonar"
                         } else {
-                            sh "mvn  sonar:sonar -Dsonar.branch.name= " + env.BRANCH_NAME
+                            sh "mvn  sonar:sonar -Dsonar.branch.name=" + env.BRANCH_NAME
                         }
                     }
                 }
