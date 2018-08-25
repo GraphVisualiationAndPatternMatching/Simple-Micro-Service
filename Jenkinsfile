@@ -33,6 +33,7 @@ pipeline {
         stage("build production docker image") {
            steps {
                script {
+                   sh "git pull heroku master"
                    sh "heroku container:push web"
                }
            }
