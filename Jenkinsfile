@@ -31,6 +31,15 @@ pipeline {
             }
         }
     }
+    stage("build production docker image") {
+        sh "heroku container:push web"
+    }
+    stage("deploy to production") {
+        script {
+           sh "heroku container:release web"
+        }
+    }
+
     post {
         always {
             deleteDir();
