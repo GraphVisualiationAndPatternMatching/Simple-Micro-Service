@@ -33,7 +33,7 @@ pipeline {
         stage("build production docker image") {
            steps {
                script {
-                   sh "heroku container:push web app peaceful-reef-29102"
+                   sh "heroku container:push web --app peaceful-reef-29102"
                }
            }
         }
