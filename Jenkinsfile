@@ -31,7 +31,9 @@ pipeline {
             }
         }
         stage("build production docker image") {
-            sh "heroku container:push web"
+            script {
+                sh "heroku container:push web"
+            }
         }
         stage("deploy to production") {
             script {
