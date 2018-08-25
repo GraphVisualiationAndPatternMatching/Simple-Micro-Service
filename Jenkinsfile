@@ -40,7 +40,7 @@ pipeline {
         stage("deploy to production") {
             steps {
                 script {
-                    sh "heroku container:release web"
+                    sh "heroku container:release web  --app peaceful-reef-29102"
                 }
             }
         }
