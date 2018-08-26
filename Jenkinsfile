@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     sh "docker build . -t simple-micro-service"
-                    sh "docker run -p 8080:8080  simple-micro-service -d"
+                    sh "docker run -p 8081:8080  simple-micro-service -d"
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     dir("acceptanceTests") {
-                        sh "SERVICE_URL=http://localhost:8080 mvn test"
+                        sh "SERVICE_URL=http://localhost:8081 mvn test"
                     }
                 }
 
