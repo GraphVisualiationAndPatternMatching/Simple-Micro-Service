@@ -45,8 +45,6 @@
         <sonar.organization>jb574-github</sonar.organization>
         <sonar.login>8a875fd34f367672dff11f73ca90d75ea41dd84b</sonar.login>
         <sonar.projectKey>Simple-Micro-Service</sonar.projectKey>
-        <maven.compiler.source>10.0</maven.compiler.source>
-        <maven.compiler.target>10.0</maven.compiler.target>
     </properties>
 
     <build>
