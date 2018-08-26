@@ -79,7 +79,7 @@ pipeline {
         always {
             deleteDir();
             sh "docker kill \$(docker ps -q)"
-            sh "docker rm \$(docker ps -a -q)
+            sh "docker rm \$(docker ps -a -q)"
         }
     }
 }
