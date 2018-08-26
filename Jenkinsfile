@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     sh "docker build . -t simple-micro-service"
-                    sh "docker run -p 8081:8080  simple-micro-service -d"
+                    sh "docker run -p 8081:8080  -d simple-micro-service "
                 }
             }
         }
@@ -78,6 +78,8 @@ pipeline {
     post {
         always {
             deleteDir();
+            sh "docker kill \$(docker ps -q)"
+            sh "docker rm \$(docker ps -a -q)
         }
     }
 }
