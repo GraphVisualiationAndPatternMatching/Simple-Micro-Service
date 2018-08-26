@@ -30,10 +30,65 @@ pipeline {
                 }
             }
         }
+        stage("build  and run docker image for acceptance tests") {
+            steps {
+                script {
+                    sh "docker build . -t simple-micro-service"
+                    sh "docker run -p 8081:8080  -d simple-micro-service "
+                }
+            }
+        }
+        stage("run acceptance tests") {
+            steps {
+                script {
+                    dir("acceptanceTests") {
+                        sh "SERVICE_URL=http://localhost:8081 mvn test"
+                    }
+                }
+
+            }
+        }
+        stage("build production docker image") {
+            when {
+                branch 'master'
+            }
+           steps {
+               script {
+                   sh "heroku container:push web --app simple-micro-service"
+               }
+           }
+        }
+        stage("deploy to production") {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    sh "heroku container:release web  --app simple-micro-service"
+                }
+            }
+        }
+        stage("verify production working ") {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    dir("acceptanceTests") {
+                        sh "SERVICE_URL=http://simple-micro-service.herokuapp.com mvn test"
+                    }
+                }
+
+            }
+        }
     }
+
+
     post {
         always {
             deleteDir();
+            sh "docker kill \$(docker ps -q)"
+            sh "docker rm \$(docker ps -a -q)"
         }
     }
 }
