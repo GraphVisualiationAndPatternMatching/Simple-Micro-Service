@@ -8,6 +8,10 @@
     <artifactId>Simple-Rest-Service-Acceptance-Tests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.source>10.0</maven.compiler.source>
+        <maven.compiler.target>10.0</maven.compiler.target>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -50,5 +54,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 
 </project>

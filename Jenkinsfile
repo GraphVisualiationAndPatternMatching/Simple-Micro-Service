@@ -30,6 +30,24 @@ pipeline {
                 }
             }
         }
+        stage("build  and run docker image for acceptance tests") {
+            steps {
+                script {
+                    sh "docker build . -t simple-micro-service"
+                    sh "docker run -p 8080:8080  simple-micro-service -d"
+                }
+            }
+        }
+        stage("run acceptance tests") {
+            steps {
+                script {
+                    dir("acceptanceTests") {
+                        sh "SERVICE_URL=http://localhost:8080 mvn test"
+                    }
+                }
+
+            }
+        }
         stage("build production docker image") {
            steps {
                script {
@@ -42,6 +60,16 @@ pipeline {
                 script {
                     sh "heroku container:release web  --app simple-micro-service"
                 }
+            }
+        }
+        stage("verify production working ") {
+            steps {
+                script {
+                    dir("acceptanceTests") {
+                        sh "SERVICE_URL=http://simple-micro-service.herokuapp.com mvn test"
+                    }
+                }
+
             }
         }
     }
