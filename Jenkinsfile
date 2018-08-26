@@ -49,6 +49,9 @@ pipeline {
             }
         }
         stage("build production docker image") {
+            when {
+                branch 'master'
+            }
            steps {
                script {
                    sh "heroku container:push web --app simple-micro-service"
@@ -56,6 +59,9 @@ pipeline {
            }
         }
         stage("deploy to production") {
+            when {
+                branch 'master'
+            }
             steps {
                 script {
                     sh "heroku container:release web  --app simple-micro-service"
@@ -63,6 +69,9 @@ pipeline {
             }
         }
         stage("verify production working ") {
+            when {
+                branch 'master'
+            }
             steps {
                 script {
                     dir("acceptanceTests") {
